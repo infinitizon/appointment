@@ -194,7 +194,7 @@ $(document).ready(function () {
 								"<div class='col-sm-8'>"+
 									"<div class='row'>" +
 										"<div class='col-sm-8 p-2 border border-top-0 border-bottom-0'><b>Name of Next of Kin</b><h3 class='ml-3 d-inline display-4 text-uppercase'>"+repo.nok_name+"</h3></div>"+
-										"<div class='col-sm-4 p-2 border border-top-0 border-bottom-0'><b>Relationship</b><h3 class='ml-3 d-inline display-4 text-uppercase'>"+repo.nok_relationship.val_dsc+"</h3></div>"+
+										"<div class='col-sm-4 p-2 border border-top-0 border-bottom-0'><b>Relationship</b><h3 class='ml-3 d-inline display-4 text-uppercase'>"+repo.relative.val_dsc+"</h3></div>"+
 									"</div>" +
 								"</div>" +
 								"<div class='col-sm-4 p-2 border border-top-0 border-bottom-0'><b>Date of Birth</b><h3 class='ml-3 d-inline display-4 text-uppercase'>" +repo.dob+"</h3></div>"+
