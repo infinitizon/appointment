@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -14,8 +15,8 @@ class Create1494477642WorkingHoursTable extends Migration
     {
         if(! Schema::hasTable('working_hours')) {
             Schema::create('working_hours', function (Blueprint $table) {
-                $table->increments('id');
-                $table->integer('employee_id')->unsigned()->nullable();
+                $table->bigincrements('id');
+                $table->biginteger('employee_id')->unsigned()->nullable();
                 $table->foreign('employee_id', '35988_5913eb4a114ec')->references('id')->on('employees')->onDelete('cascade');
                 $table->date('date')->nullable();
                 $table->time('start_time');

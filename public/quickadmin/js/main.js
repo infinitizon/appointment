@@ -85,6 +85,15 @@ $(document).ready(function () {
     if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
         $('.datatable, .ajaxTable').siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-xs btn-danger js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">Delete selected</a>');
     }
+    if (typeof window.qa_sms != 'undefined') {
+        $('.datatable, .ajaxTable').siblings('.actions').append('<a href="' + window.qa_sms + '" class="btn btn-xs btn-primary js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">SMS selected</a>');
+    }
+    if (typeof window.qa_email != 'undefined') {
+        $('.datatable, .ajaxTable').siblings('.actions').append('<a href="' + window.qa_email + '" class="btn btn-xs btn-info js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">Email selected</a>');
+    }
+    if (typeof window.qa_sms_email != 'undefined') {
+        $('.datatable, .ajaxTable').siblings('.actions').append('<a href="' + window.qa_sms_email + '" class="btn btn-xs btn-warning js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">SMS & Email selected</a>');
+    }
 
     $(document).on('click', '.js-delete-selected', function () {
         if (confirm('Are you sure')) {
@@ -103,7 +112,7 @@ $(document).ready(function () {
                     ids: ids
                 }
             }).done(function () {
-                location.reload();
+                // location.reload();
             });
         }
 
@@ -196,7 +205,6 @@ $(document).ready(function () {
     });
 
     $('.select2').select2();
-
 });
 
 function processAjaxTables() {
@@ -218,6 +226,15 @@ function processAjaxTables() {
         $(this).DataTable(window.dtDefaultOptions);
         if (typeof window.route_mass_crud_entries_destroy != 'undefined') {
             $(this).siblings('.actions').html('<a href="' + window.route_mass_crud_entries_destroy + '" class="btn btn-xs btn-danger js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">Delete selected</a>');
+        }
+        if (typeof window.qa_sms != 'undefined') {
+            $(this).siblings('.actions').append('<a href="' + window.qa_sms + '" class="btn btn-xs btn-danger js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">SMS selected</a>');
+        }
+        if (typeof window.qa_email != 'undefined') {
+            $(this).siblings('.actions').append('<a href="' + window.qa_email + '" class="btn btn-xs btn-danger js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">Email selected</a>');
+        }
+        if (typeof window.qa_sms_email != 'undefined') {
+            $(this).siblings('.actions').append('<a href="' + window.qa_sms_email + '" class="btn btn-xs btn-danger js-delete-selected" style="margin-top:0.755em;margin-left: 20px;">SMS & Email selected</a>');
         }
     });
 

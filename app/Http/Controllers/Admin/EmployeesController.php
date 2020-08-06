@@ -78,8 +78,12 @@ class EmployeesController extends Controller
             return abort(401);
         }
         $employee = Employee::findOrFail($id);
-
-        return view('admin.employees.edit', compact('employee'));
+		$relations = [
+            'services' => \App\Service::get()->pluck('name', 'id'),
+            'service_id' => $employee->services,
+        ];
+        // return $relations['service_id'];
+        return view('admin.employees.edit', compact('employee')+$relations);
     }
 
     /**
@@ -94,10 +98,15 @@ class EmployeesController extends Controller
         if (! Gate::allows('employee_edit')) {
             return abort(401);
         }
+        
         $employee = Employee::findOrFail($id);
-        $employee->update($request->all());
+        $employee->update($request->only(['first_name', 'last_name', 'phone', 'email']));
 
-
+		$services_ids = [];
+		foreach($request->services as $service) :
+		$services_ids[] = $service;
+		endforeach;
+		$employee->services()->sync($services_ids);
 
         return redirect()->route('admin.employees.index');
     }
@@ -166,7 +175,8 @@ class EmployeesController extends Controller
 		$employees = DB::table('employees')->join('working_hours', function ($join) use ($request) {
 			$join->on('employees.id', '=', 'working_hours.employee_id')
 			->where('working_hours.date', '=', $request->date);
-		})->get();
+        })->get();
+        // dd($employees);
 		$service = \App\Service::find($request->service_id);
 		$html = "";
 		$html .= "<div class='row employees'>";
@@ -175,7 +185,8 @@ class EmployeesController extends Controller
 		$html .= "<ul class='list-inline'>";
 		if(is_object($employees) && count($employees) > 0):
 		foreach($employees as $employee) :
-			$html .= "<li><label><input type='radio' name='employee_id' class='employee_id' value='".$employee->id."'> ".$employee->first_name." ".$employee->last_name." (<span class='starting_hour_$employee->id'>".date("H", strtotime($employee->start_time))."</span>:<span class='starting_minute_$employee->id'>".date("i", strtotime($employee->start_time))."</span> - <span class='finish_hour_$employee->id'>".date("H", strtotime($employee->finish_time))."</span>:<span class='finish_minute_$employee->id'>".date("i", strtotime($employee->finish_time))."</span>)</label></li>";
+			// $html .= "<li><label><input type='radio' name='employee_id' class='employee_id' value='".$employee->id."'> ".$employee->first_name." ".$employee->last_name." (<span class='starting_hour_$employee->id'>".date("H", strtotime($employee->start_time))."</span>:<span class='starting_minute_$employee->id'>".date("i", strtotime($employee->start_time))."</span> - <span class='finish_hour_$employee->id'>".date("H", strtotime($employee->finish_time))."</span>:<span class='finish_minute_$employee->id'>".date("i", strtotime($employee->finish_time))."</span>)</label></li>";
+			$html .= "<li><label><input type='radio' name='employee_id' class='employee_id' value='".$employee->employee_id."'> ".$employee->first_name." ".$employee->last_name." (<span class='starting_hour_$employee->employee_id'>".date("H", strtotime($employee->start_time))."</span>:<span class='starting_minute_$employee->employee_id'>".date("i", strtotime($employee->start_time))."</span> - <span class='finish_hour_$employee->employee_id'>".date("H", strtotime($employee->finish_time))."</span>:<span class='finish_minute_$employee->employee_id'>".date("i", strtotime($employee->finish_time))."</span>)</label></li>";
 		endforeach;
 		else :
 		$html .= "<li>No employees working on your selected date</li>";

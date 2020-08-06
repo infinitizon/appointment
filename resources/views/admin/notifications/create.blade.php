@@ -22,7 +22,7 @@
                     @endif
                 </div>
             </div>
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('price', 'Price*', ['class' => 'control-label']) !!}
                     {!! Form::text('price', old('price'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
@@ -33,7 +33,7 @@
                         </p>
                     @endif
                 </div>
-            </div>			 -->
+            </div>			
         </div>
     </div>
 

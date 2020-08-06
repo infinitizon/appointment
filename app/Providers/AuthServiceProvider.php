@@ -67,6 +67,23 @@ class AuthServiceProvider extends ServiceProvider
             return in_array($user->role_id, [1]);
         });
 		
+        // Auth gates for: Notifications
+        Gate::define('notification_access', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('notification_create', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('notification_edit', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('notification_view', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+        Gate::define('notification_delete', function ($user) {
+            return in_array($user->role_id, [1]);
+        });
+
         // Auth gates for: Services
         Gate::define('service_access', function ($user) {
             return in_array($user->role_id, [1]);

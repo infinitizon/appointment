@@ -24,13 +24,15 @@ class StoreAppointmentsRequest extends FormRequest
     {
         return [
             'client_id' => 'required',
-            'employee_id' => 'required',
+            // 'employee_id' => 'required',
 			'service_id' => 'required',
 			'date' => 'required',
-            'starting_hour' => 'required',
-			'starting_minute' => 'required',
-			'finish_hour' => 'required',
-			'finish_minute' => 'required',
+            // 'starting_hour' => 'required',
+			// 'starting_minute' => 'required',
+			'start_time' => 'required',
+			// 'finish_hour' => 'required',
+			// 'finish_minute' => 'required',
+			'finish_time' => 'required',
         ];
     }
 }

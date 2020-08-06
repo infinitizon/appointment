@@ -23,7 +23,7 @@
                         @endcan
 
                         <th>@lang('quickadmin.services.fields.name')</th>
-                        <th>@lang('quickadmin.services.fields.price')</th>
+                        <!-- <th>@lang('quickadmin.services.fields.price')</th> -->
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -37,7 +37,7 @@
                                 @endcan
 
                                 <td>{{ $service->name }}</td>
-                                <td>{{ $service->price }}</td>
+                                <!-- <td>{{ $service->price }}</td> -->
                                 <td>
                                     @can('service_view')
                                     <a href="{{ route('admin.services.show',[$service->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>

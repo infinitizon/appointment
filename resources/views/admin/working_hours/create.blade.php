@@ -28,9 +28,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class="col-xs-6 form-group">
                     {!! Form::label('date', 'Date*', ['class' => 'control-label']) !!}
-                    {!! Form::text('date', old('date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::text('date', old('date'), ['class' => 'form-control fromDate', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('date'))
                         <p class="help-block">
@@ -38,9 +38,19 @@
                         </p>
                     @endif
                 </div>
+                <div class="col-xs-6 form-group">
+                    {!! Form::label('date', 'To Date*', ['class' => 'control-label']) !!}
+                    {!! Form::text('todate', old('todate'), ['class' => 'form-control toDate', 'placeholder' => '', 'required' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('todate'))
+                        <p class="help-block">
+                            {{ $errors->first('todate') }}
+                        </p>
+                    @endif
+                </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 form-group">
+                <div class="col-xs-6 form-group">
                     {!! Form::label('start_time', 'Start time*', ['class' => 'control-label']) !!}
                     {!! Form::text('start_time', old('start_time'), ['class' => 'form-control timepicker', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
@@ -50,9 +60,8 @@
                         </p>
                     @endif
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
+                
+                <div class="col-xs-6 form-group">
                     {!! Form::label('finish_time', 'Finish time', ['class' => 'control-label']) !!}
                     {!! Form::text('finish_time', old('finish_time'), ['class' => 'form-control timepicker', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
@@ -79,6 +88,32 @@
             dateFormat: "{{ config('app.date_format_js') }}"
         });
     </script>
+    <script>
+        $( function() {
+            var dateFormat = "{{ config('app.date_format_js') }}",
+            // var dateFormat = "mm/dd/yy",
+            fromDate = $( ".fromDate" ).datepicker({
+                    changeMonth: true,dateFormat: dateFormat
+                }).on( "change", function() {
+                    toDate.datepicker( "option", "minDate", getDate( this ) );
+                }),
+            toDate = $( ".toDate" ).datepicker({
+                    changeMonth: true,dateFormat: dateFormat
+                }).on( "change", function() {
+                    fromDate.datepicker( "option", "maxDate", getDate( this ) );
+                });
+        
+            function getDate( element ) {
+                var date;
+                try {
+                    date = $.datepicker.parseDate( dateFormat, element.value );
+                } catch( error ) {
+                    date = null;
+                }            
+                return date;
+            }
+        } );
+  </script>
     <script src="{{ url('quickadmin/js') }}/timepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>    <script>

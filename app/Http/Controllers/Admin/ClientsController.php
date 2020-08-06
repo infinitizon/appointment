@@ -16,12 +16,21 @@ class ClientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (! Gate::allows('client_access')) {
             return abort(401);
         }
-
+        $filters = $request->q;
+        if ($filters) {
+            $client = Client::with(['country','state'])
+                            ->where('card_number', 'like', '%' . $filters . '%')
+                            ->orWhere('first_name', 'like', '%' .  $filters. '%')
+                            ->orWhere('last_name', 'like', '%' .  $filters. '%')
+                            ->orWhere('phone', 'like', '%' .  $filters. '%')
+                            ->orWhere('email', 'like', '%' .  $filters. '%');
+            return $client->paginate();
+        }
         $clients = Client::all();
 
         return view('admin.clients.index', compact('clients'));
@@ -37,7 +46,12 @@ class ClientsController extends Controller
         if (! Gate::allows('client_create')) {
             return abort(401);
         }
-        return view('admin.clients.create');
+        $relations = [
+            'genders' => \App\Lov::where('def_id', '00-SEX')->get(),
+            'countries' => \App\Lov::where('def_id', 'CTC-CTR')->get(),
+            'nok_relationships' => \App\Lov::where('def_id', 'CTC-RLT')->get(),
+        ];
+        return view('admin.clients.create', $relations);
     }
 
     /**
@@ -51,10 +65,9 @@ class ClientsController extends Controller
         if (! Gate::allows('client_create')) {
             return abort(401);
         }
+        // dd($request->all());
         $client = Client::create($request->all());
-
-
-
+        
         return redirect()->route('admin.clients.index');
     }
 
@@ -71,8 +84,14 @@ class ClientsController extends Controller
             return abort(401);
         }
         $client = Client::findOrFail($id);
-
-        return view('admin.clients.edit', compact('client'));
+        $relations = [
+            'genders' => \App\Lov::where('def_id', '00-SEX')->get(),
+            'countries' => \App\Lov::where('def_id', 'CTC-CTR')->get(),
+            'nok_relationships' => \App\Lov::where('def_id', 'CTC-RLT')->get(),
+            'states' => \App\Lov::where('par_id', $client->addr_country)->get(),
+        ];
+// return $client;
+        return view('admin.clients.edit', compact('client')+$relations);
     }
 
     /**
@@ -102,16 +121,17 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, Client $client)
     {
         if (! Gate::allows('client_view')) {
             return abort(401);
         }
         $relations = [
-            'appointments' => \App\Appointment::where('client_id', $id)->get(),
+            'appointments' => \App\Appointment::where('client_id', $client->id)->get(),
         ];
-
-        $client = Client::findOrFail($id);
+        if ($request->api) {
+            return $client->load(['country', 'state', 'gender', 'nok_relationship']);
+        }
 
         return view('admin.clients.show', compact('client') + $relations);
     }

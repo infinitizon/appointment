@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -14,7 +15,7 @@ class Create1494477165EmployeesTable extends Migration
     {
         if(! Schema::hasTable('employees')) {
             Schema::create('employees', function (Blueprint $table) {
-                $table->increments('id');
+                $table->bigincrements('id');
                 $table->string('first_name')->nullable();
                 $table->string('last_name')->nullable();
                 $table->string('phone')->nullable();

@@ -22,7 +22,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('roles_mass_destroy', ['uses' => 'Admin\RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
-    Route::resource('clients', 'Admin\ClientsController');
+    Route::resource('notifications', 'Admin\NotificationsController');
+	Route::post('notifications\{type}\notify', ['uses' => 'Admin\NotificationsController@notify', 'as' => 'notifications.notify']);
+	Route::resource('clients', 'Admin\ClientsController');
     Route::post('clients_mass_destroy', ['uses' => 'Admin\ClientsController@massDestroy', 'as' => 'clients.mass_destroy']);
 	Route::get('get-employees', 'Admin\EmployeesController@GetEmployees');
     Route::resource('employees', 'Admin\EmployeesController');
@@ -33,5 +35,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('appointments_mass_destroy', ['uses' => 'Admin\AppointmentsController@massDestroy', 'as' => 'appointments.mass_destroy']);
 	Route::resource('services', 'Admin\ServicesController');
 	Route::post('services_mass_destroy', ['uses' => 'Admin\ServicesController@massDestroy', 'as' => 'services.mass_destroy']);
-	
+	Route::apiResource('lovs', 'Admin\LovController'); 
+    Route::get('countries', ['uses' => 'Admin\LovController@countries', 'as' => 'lovs.country.list']); 
+    Route::get('countries/{id}/states', ['uses' => 'Admin\LovController@countries', 'as' => 'lovs.states.list']); 
+    Route::get('lovs/{type}/any', ['uses' => 'Admin\LovController@lovs', 'as' => 'lovs.others']); 
 });

@@ -22,6 +22,7 @@
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
 
+                        <th>@lang('quickadmin.clients.fields.c-no')</th>
                         <th>@lang('quickadmin.clients.fields.first-name')</th>
                         <th>@lang('quickadmin.clients.fields.last-name')</th>
                         <th>@lang('quickadmin.clients.fields.phone')</th>
@@ -38,6 +39,7 @@
                                     <td></td>
                                 @endcan
 
+                                <td>{{ $client->card_number }}</td>
                                 <td>{{ $client->first_name }}</td>
                                 <td>{{ $client->last_name }}</td>
                                 <td>{{ $client->phone }}</td>

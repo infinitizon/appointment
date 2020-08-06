@@ -14,9 +14,9 @@ class CreateEmployeeServiceTable extends Migration
     public function up()
     {
         Schema::create('employee_service', function (Blueprint $table) {
-            $table->integer('employee_id')->unsigned();
+            $table->biginteger('employee_id')->unsigned();
 			$table->foreign('employee_id')->references('id')->on('employees');
-			$table->integer('service_id')->unsigned();
+			$table->biginteger('service_id')->unsigned();
 			$table->foreign('service_id')->references('id')->on('services');
         });
     }

@@ -14,6 +14,10 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('quickadmin.clients.fields.first-name')</th>
+                            <td>{{ $client->card_number }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.clients.fields.first-name')</th>
                             <td>{{ $client->first_name }}</td>
                         </tr>
                         <tr>

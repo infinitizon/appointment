@@ -25,7 +25,7 @@
             @can('employee_access')
             <li class="{{ $request->segment(2) == 'employees' ? 'active' : '' }}">
                 <a href="{{ route('admin.employees.index') }}">
-                    <i class="fa fa-suitcase"></i>
+                    <i class="fa fa-user-md"></i>
                     <span class="title">@lang('quickadmin.employees.title')</span>
                 </a>
             </li>
@@ -42,7 +42,7 @@
             @can('service_access')
             <li class="{{ $request->segment(2) == 'services' ? 'active' : '' }}">
                 <a href="{{ route('admin.services.index') }}">
-                    <i class="fa fa-hourglass"></i>
+                    <i class="fa fa-medkit"></i>
                     <span class="title">@lang('quickadmin.services.title')</span>
                 </a>
             </li>
@@ -87,6 +87,16 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('user_access')
+                            <li class="{{ $request->segment(2) == 'notifications' ? 'active active-sub' : '' }}">
+                                <a href="{{ route('admin.notifications.index') }}">
+                                    <i class="fa fa-bell"></i>
+                                    <span class="title">
+                                @lang('quickadmin.notifications.title')
+                            </span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endcan
@@ -99,7 +109,7 @@
             </li>
 
             <li>
-                <a href="#logout" onclick="$('#logout').submit();">
+                <a href="javascript:;" onclick="$('#logout').submit();">
                     <i class="fa fa-arrow-left"></i>
                     <span class="title">@lang('quickadmin.qa_logout')</span>
                 </a>

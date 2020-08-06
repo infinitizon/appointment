@@ -11,12 +11,19 @@
            data-toggle="collapse"
            data-target=".navbar-collapse">
         </a>
-
+ 
         <div class="top-menu">
             <ul class="nav navbar-nav pull-right">
+            
                 <li>
-                    <a href="https://quickadminpanel.com" target="_blank">Generated with QuickAdminPanel</a>
+                    <a href="javascript:;" onclick="$('#logout').submit();">
+                        <i class="fa fa-arrow-left"></i>
+                        <span class="title">@lang('quickadmin.qa_logout')</span>
+                    </a>
                 </li>
+                <!-- <li>
+                    <a href="https://quickadminpanel.com" target="_blank">Generated with QuickAdminPanel</a>
+                </li> -->
             </ul>
         </div>
     </div>

@@ -105,5 +105,12 @@ return [
         ],
 
     ],
+    'sms' => [
+        'main_eml' => env('SMS_MAIN_EML', 'infinitizon@yahoo.com'),
+        'sub_acc' => env('SMS_SUB_ACC', 'EDUGATE'),
+        'sub_pwd' => env('SMS_SUB_PWD', 'HRo7[AAZdb*1~o_S'),
+        'end_pt' => env('SMS_END_PT', 'http://www.smslive247.com/http/index.aspx'),
+        'sender' => env('SMS_SENDER', 'Gen Hosp'),
+    ],
 
 ];

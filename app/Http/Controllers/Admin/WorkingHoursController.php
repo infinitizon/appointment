@@ -55,10 +55,15 @@ class WorkingHoursController extends Controller
         if (! Gate::allows('working_hour_create')) {
             return abort(401);
         }
-        $working_hour = WorkingHour::create($request->all());
+        $begin = new \DateTime($request->date);
+        $end = new \DateTime($request->todate . ' +1 day');
+        $interval = \DateInterval::createFromDateString('1 day');
+        $period = new \DatePeriod($begin, $interval, $end);
 
-
-
+        foreach ($period as $dt) {
+            $request->merge(['date' => $dt->format("Y-m-d")]);
+            $working_hour = WorkingHour::create($request->all());
+        }
         return redirect()->route('admin.working_hours.index');
     }
 

@@ -63,7 +63,11 @@ class ServicesController extends Controller
      */
     public function show($id)
     {
-        //
+        if (! Gate::allows('service_view')) {
+            return abort(401);
+        }
+        $service = Service::findOrFail($id);
+        return view('admin.services.show', compact('service'));
     }
 
     /**
@@ -74,7 +78,12 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd('Got here');
+        if (! Gate::allows('service_view')) {
+            return abort(401);
+        }
+        $service = Service::findOrFail($id);
+        return view('admin.services.edit', compact('service'));
     }
 
     /**
@@ -86,9 +95,14 @@ class ServicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        if (! Gate::allows('service_edit')) {
+            return abort(401);
+        }
+        $service = Service::findOrFail($id);
+        $service->update($request->all());
 
+        return redirect()->route('admin.services.index');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -97,7 +111,13 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (! Gate::allows('service_delete')) {
+            return abort(401);
+        }
+        $service = Service::findOrFail($id);
+        $service->delete();
+
+        return redirect()->route('admin.services.index');
     }
 	
 	public function massDestroy(Request $request)

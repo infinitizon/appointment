@@ -2,11 +2,11 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.services.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.services.store']]) !!}
+    {!! Form::model($service, ['method' => 'PUT', 'route' => ['admin.services.update', $service->id]]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('quickadmin.qa_create')
+            @lang('quickadmin.qa_edit')
         </div>
         
         <div class="panel-body">
@@ -22,7 +22,7 @@
                     @endif
                 </div>
             </div>
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('price', 'Price*', ['class' => 'control-label']) !!}
                     {!! Form::text('price', old('price'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
@@ -33,11 +33,11 @@
                         </p>
                     @endif
                 </div>
-            </div>			 -->
+            </div>			
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('quickadmin.qa_update'), ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 @stop
 
