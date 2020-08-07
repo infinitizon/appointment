@@ -24,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $relations = [
+            'clients' => \App\Client::all(),
+            'doctors' => \App\Employee::all(),
+            'appointments' => \App\Appointment::where('start_time', '>=', 'NOW()'),
+        ];
+        return view('home', $relations);
     }
 }
