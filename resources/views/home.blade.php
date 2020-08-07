@@ -57,7 +57,7 @@
                                 </div>
                                 <div>Upcoming appointments</div>
                                 <div class="ml-auto">
-                                    <h2 class="m-b-0 font-light">{{count($doctors)}}</h2>
+                                    <h2 class="m-b-0 font-light">{{count($appointments)}}</h2>
                                 </div>
                             </div>
                         </div>
