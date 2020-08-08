@@ -45,10 +45,10 @@ class Client extends Model
         $data = array('cmd' => 'sendquickmsg', 'owneremail' => \config('database.sms.main_eml'), 'subacct'=>\config('database.sms.sub_acc'),
              'subacctpwd'=>\config('database.sms.sub_pwd'), 'sender' => \config('database.sms.sender'), 'message' => 'Test', 'sendto' => $this->phone);
 
-    //    dd( $data);
+       dd( $data);
         $sms = $this->callAPI('GET', \config('database.sms.end_pt'), $data);
         $smsResp = explode(':', $sms);
-           dd( $smsResp);
+        //    dd( $smsResp);
         if ($smsResp[0] == 'OK') {
             return array("success"=>true, 'message' => "SMS successfully sent to the recipients");
         }else {

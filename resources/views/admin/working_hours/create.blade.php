@@ -85,6 +85,7 @@
     <script>
         $('.date').datepicker({
             autoclose: true,
+            changeMonth: true, changeYear: true,
             dateFormat: "{{ config('app.date_format_js') }}"
         });
     </script>
@@ -93,12 +94,12 @@
             var dateFormat = "{{ config('app.date_format_js') }}",
             // var dateFormat = "mm/dd/yy",
             fromDate = $( ".fromDate" ).datepicker({
-                    changeMonth: true,dateFormat: dateFormat
+                    changeMonth: true, changeYear: true,dateFormat: dateFormat
                 }).on( "change", function() {
                     toDate.datepicker( "option", "minDate", getDate( this ) );
                 }),
             toDate = $( ".toDate" ).datepicker({
-                    changeMonth: true,dateFormat: dateFormat
+                    changeMonth: true, changeYear: true,dateFormat: dateFormat
                 }).on( "change", function() {
                     fromDate.datepicker( "option", "maxDate", getDate( this ) );
                 });

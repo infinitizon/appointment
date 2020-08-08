@@ -27,7 +27,7 @@ class HomeController extends Controller
         $relations = [
             'clients' => \App\Client::all(),
             'doctors' => \App\Employee::all(),
-            'appointments' => \App\Appointment::where('start_time', '>=', 'NOW()')->get(),
+            'appointments' => \App\Appointment::where('start_time', '>=', 'NOW()')->get(), 
         ];
         return view('home', $relations);
     }

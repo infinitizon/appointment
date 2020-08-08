@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
@@ -16,7 +16,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="m-r-10">
                                     <span class="btn btn-circle btn-lg bg-danger">
-                                        <i class="fa fa-user-secret fa-2"></i>
+                                        <i class="fa fa-user-secret fa-3"></i>
                                     </span>
                                 </div>
                                 <div>Total Patients</div>
@@ -35,7 +35,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="m-r-10">
                                     <span class="btn btn-circle btn-lg btn-info">
-                                        <i class="fa fa-user-md fa-2"></i>
+                                        <i class="fa fa-user-md fa-3"></i>
                                     </span>
                                 </div>
                                 <div>Total Doctors</div>
@@ -52,7 +52,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="m-r-10">
                                     <span class="btn btn-circle btn-lg bg-success">
-                                        <i class="fa fa-calendar fa-2"></i>
+                                        <i class="fa fa-calendar fa-3"></i>
                                     </span>
                                 </div>
                                 <div>Upcoming appointments</div>

@@ -226,6 +226,7 @@ function formatRepoSelection (repo) {
 }
 		$('.date').datepicker({
 			autoclose: true,
+            changeMonth: true, changeYear: true,
 			dateFormat: "{{ config('app.date_format_js') }}"
 		}).datepicker("setDate", "0");
 		// $("#service_id").on("change", function() {

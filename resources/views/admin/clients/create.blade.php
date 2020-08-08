@@ -227,6 +227,7 @@
         });
         $('.date').datepicker({
 			autoclose: true,
+            changeMonth: true, changeYear: true,
 			dateFormat: "{{ config('app.date_format_js') }}"
 		})
     });

@@ -95,8 +95,8 @@ return [
 		'title' => 'Appointments',
 		'created_at' => 'Time',
 		'fields' => [
-			'client' => 'Client',
-			'employee' => 'Employee',
+			'client' => 'Patient',
+			'employee' => 'Doctor',
 			'start-time' => 'Start time',
 			'finish-time' => 'Finish time',
 			'comments' => 'Comments',

@@ -130,7 +130,7 @@ class ClientsController extends Controller
             'appointments' => \App\Appointment::where('client_id', $client->id)->get(),
         ];
         if ($request->api) {
-            return $client->load(['country', 'state', 'gender', 'nok_relationship']);
+            return $client->load(['country', 'state', 'gender', 'relative']);
         }
 
         return view('admin.clients.show', compact('client') + $relations);
