@@ -128,15 +128,21 @@ class NotificationsController extends Controller
         if ($request->input('ids')) {
             $entries = Appointment::whereIn('id', $request->input('ids'))->get();
             foreach ($entries as $entry) {
+                $msg = "Dear " . $entry->client->first_name;
+                $msg .= "\nDo not forget your appointment at " .$entry->service->name;
+                $msg .= " on " .date('D, d M', strtotime($entry->start_time));
+                $msg .= " between " .date('h:i a', strtotime($entry->start_time)) ;
+                $msg .= " and " .date('h:i a', strtotime($entry->end_time)) ;
+
                 if($type == 1) {
-                    $entry->client->sendSMS();
+                    $entry->client->sendSMS($msg);
                 }
                 if($type == 2) {
-                    $entry->client->sendEmail();
+                    $entry->client->sendEmail($msg);
                 }
                 if($type == 3) {
-                    $entry->client->sendSMS();
-                    $entry->client->sendEmail();
+                    $entry->client->sendSMS($msg);
+                    $entry->client->sendEmail($msg);
                 }
             }
         }

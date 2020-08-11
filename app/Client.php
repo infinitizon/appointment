@@ -41,11 +41,11 @@ class Client extends Model
         return $this->hasOne(LOV::class,'id','addr_state');
     }
     
-    public function sendSMS() {
-        $data = array('cmd' => 'sendquickmsg', 'owneremail' => \config('database.sms.main_eml'), 'subacct'=>\config('database.sms.sub_acc'),
-             'subacctpwd'=>\config('database.sms.sub_pwd'), 'sender' => \config('database.sms.sender'), 'message' => 'Test', 'sendto' => $this->phone);
+    public function sendSMS($msg = '') {
 
-       dd( $data);
+        $data = array('cmd' => 'sendquickmsg', 'owneremail' => \config('database.sms.main_eml'), 'subacct'=>\config('database.sms.sub_acc'),
+             'subacctpwd'=>\config('database.sms.sub_pwd'), 'sender' => \config('database.sms.sender'), 'message' => $msg, 'sendto' => $this->phone);
+
         $sms = $this->callAPI('GET', \config('database.sms.end_pt'), $data);
         $smsResp = explode(':', $sms);
         //    dd( $smsResp);
