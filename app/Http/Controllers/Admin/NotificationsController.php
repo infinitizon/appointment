@@ -132,7 +132,7 @@ class NotificationsController extends Controller
                 $msg .= "\nDo not forget your appointment at " .$entry->service->name;
                 $msg .= " on " .date('D, d M', strtotime($entry->start_time));
                 $msg .= " between " .date('h:i a', strtotime($entry->start_time)) ;
-                $msg .= " and " .date('h:i a', strtotime($entry->end_time)) ;
+                $msg .= " and " .date('h:i a', strtotime($entry->finish_time)) ;
                 $msg .= "\nRegards" ;
 
                 if($type == 1) {
