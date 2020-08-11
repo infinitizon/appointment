@@ -133,6 +133,7 @@ class NotificationsController extends Controller
                 $msg .= " on " .date('D, d M', strtotime($entry->start_time));
                 $msg .= " between " .date('h:i a', strtotime($entry->start_time)) ;
                 $msg .= " and " .date('h:i a', strtotime($entry->end_time)) ;
+                $msg .= "\nRegards" ;
 
                 if($type == 1) {
                     $entry->client->sendSMS($msg);
