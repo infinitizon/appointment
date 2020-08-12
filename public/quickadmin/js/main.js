@@ -112,7 +112,7 @@ $(document).ready(function () {
                     ids: ids
                 }
             }).done(function () {
-                // location.reload();
+                location.reload();
             });
         }
 

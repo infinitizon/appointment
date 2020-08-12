@@ -30,11 +30,11 @@
                     @endcan
 
                     <th>@lang('quickadmin.appointments.fields.client')</th>
-                    <th>@lang('quickadmin.clients.fields.last-name')</th>
+                    <!-- <th>@lang('quickadmin.clients.fields.last-name')</th> -->
                     <th>@lang('quickadmin.clients.fields.phone')</th>
                     <th>@lang('quickadmin.clients.fields.email')</th>
-                    <th>@lang('quickadmin.appointments.fields.employee')</th>
-                    <th>@lang('quickadmin.employees.fields.last-name')</th>
+                    <!-- <th>@lang('quickadmin.appointments.fields.employee')</th>
+                    <th>@lang('quickadmin.employees.fields.last-name')</th> -->
                     <th>@lang('quickadmin.appointments.fields.start-time')</th>
                     <th>@lang('quickadmin.appointments.fields.finish-time')</th>
                     <th>@lang('quickadmin.appointments.fields.comments')</th>
@@ -50,12 +50,10 @@
                                 <td></td>
                             @endcan
 
-                            <td>{{ $appointment->client->first_name or '' }}</td>
-                            <td>{{ isset($appointment->client) ? $appointment->client->last_name : '' }}</td>
+                            <td>{{ $appointment->client->first_name or '' }} {{ isset($appointment->client) ? $appointment->client->last_name : '' }}</td>
                             <td>{{ isset($appointment->client) ? $appointment->client->phone : '' }}</td>
                             <td>{{ isset($appointment->client) ? $appointment->client->email : '' }}</td>
-                            <td>{{ $appointment->employee->first_name or '' }}</td>
-                            <td>{{ isset($appointment->employee) ? $appointment->employee->last_name : '' }}</td>
+                            <!-- <td>{{ $appointment->employee->first_name or '' }} {{ isset($appointment->employee) ? $appointment->employee->last_name : '' }}</td> -->
                             <td>{{ $appointment->start_time }}</td>
                             <td>{{ $appointment->finish_time }}</td>
                             <td>{!! $appointment->comments !!}</td>

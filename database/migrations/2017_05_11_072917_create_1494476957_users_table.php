@@ -24,6 +24,9 @@ class Create1494476957UsersTable extends Migration
                 $table->string('remember_token')->nullable();
                 
                 $table->timestamps();
+                $table->softDeletes();
+
+                $table->index(['deleted_at']);
                 
             });
         }
