@@ -15,9 +15,13 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->bigincrements('id');
-            $table->timestamps();
 			$table->string('name');
-			$table->float('price', 8, 2)->default('100.0');;
+            $table->float('price', 8, 2)->default('100.0');;
+            
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['deleted_at']);
         });
     }
 
